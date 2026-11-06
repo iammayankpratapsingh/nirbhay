@@ -1,0 +1,15 @@
+# One-click Render.com blueprint (free plan supports WebSockets).
+# Runs the whole game (website + multiplayer) as one Node service.
+services:
+  - type: web
+    name: nirbhay-pen-battle
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: GAME_PASSWORD
+        sync: false
+      - key: NODE_VERSION
+        value: "22"
